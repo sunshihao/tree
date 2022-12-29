@@ -1,12 +1,12 @@
 <template>
-  <div class="tree-node" :style="indentStyle" ref="el">
+  <div v-if="!table" class="tree-node" :style="indentStyle" ref="el">
     <div class="tree-node-inner">
       <slot :indentStyle="indentStyle"></slot>
     </div>
   </div>
-  <!-- <tr v-else class="tree-node" ref="el">
+  <tr v-else class="tree-node" ref="el">
     <slot :indentStyle="indentStyle"></slot>
-  </tr> -->
+  </tr>
 </template>
 
 <script lang="ts">

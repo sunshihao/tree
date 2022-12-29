@@ -38,8 +38,9 @@
 			<span v-if="stat.children.length" @click="stat.open = !stat.open">
 				{{ stat.open ? "-" : "+" }}
 			</span>
+			{{ node.text }}
 			<!-- <img v-if="stat.children.length" @click="stat.open = !stat.open" style="width: 1em;height: 1em;" src="./assets/xia.svg"> -->
-			{{ stat.text }}
+			<!-- {{ stat.text }} -->
 			</a>
 		</template>
 	</DraggableTree>
@@ -53,6 +54,7 @@
 		background-color: azure;
 		height: 400px;
 		width: 600px;
+		overflow: auto;
 	}
 	
 	.home_card { 

@@ -1,5 +1,5 @@
 <template>
-<!-- <VirtualList
+  <VirtualList
     class="he-tree"
     :class="{
       'he-tree--rtl rtl': rtl,
@@ -9,21 +9,11 @@
     :items="visibleStats"
     :disabled="!virtualization"
     :table="table"
-  > -->
-  
-  <InfiniteList  
-    class="he-tree"
-    :class="{
-      'he-tree--rtl rtl': rtl,
-      'he-tree--drag-overing drag-overing': dragOvering,
-    }"
-    ref="vtlist" :data="valueComputed" :width="'100%'" :height="500" :itemSize="50" :debug="debug" v-slot="{ item: stat, index }">
-   <!-- <template #prepend>
+  >
+    <template #prepend>
       <slot name="prepend" :tree="self"></slot>
-    </template> -->
-	<!-- <div class="li-con">{{ index + 1 }} : {{ item }}</div> -->
-	
-   <!-- <template #default="{ item: stat, index }"> -->
+    </template>
+    <template #default="{ item: stat, index }">
       <TreeNode
         :vt-index="index"
         :class="[
@@ -45,7 +35,21 @@
         @check="$emit('check:node', $event)"
       >
         <template #default="{ indentStyle }">
+          <template v-if="stat.data === placeholderData">
+            <div
+              v-if="!table"
+              class="drag-placeholder he-tree-drag-placeholder"
+            >
+              <slot name="placeholder" :tree="self"></slot>
+            </div>
+            <td v-else :style="indentStyle" :colspan="placeholderColspan">
+              <div class="drag-placeholder he-tree-drag-placeholder">
+                <slot name="placeholder" :tree="self"></slot>
+              </div>
+            </td>
+          </template>
           <slot
+            v-else
             :node="stat.data"
             :stat="stat"
             :indentStyle="indentStyle"
@@ -54,25 +58,22 @@
           ></template
         >
       </TreeNode>
-    <!-- </template> -->
-   <!-- <template #append>
+    </template>
+    <template #append>
       <slot name="append" :tree="self"></slot>
-    </template> -->
-  <!-- </VirtualList> -->
-  </InfiniteList>
+    </template>
+  </VirtualList>
 </template>
 
 <script lang="ts">
 import { PropType, defineComponent, isVue2, isVue3, reactive } from "vue-demi";
 import * as hp from "helper-js";
 import VirtualList from "./virtual-list";
-import InfiniteList  from 'vue3-infinite-list';
-
 import TreeNode from "./TreeNode.vue";
 import { vueMakeTreeProcessor, Stat, TreeProcessor } from "./TreeProcessorVue";
 
 const cpt = defineComponent({
-  components: { VirtualList,InfiniteList, TreeNode },
+  components: { VirtualList, TreeNode },
   props: {
     // for vue2
     value: { required: isVue2, type: Array as PropType<any[]> },
@@ -360,7 +361,6 @@ const cpt = defineComponent({
   },
   created() {},
   mounted() {
-	  console.log('valueComputed', this.valueComputed)
     if (this.watermark === false) {
       // @ts-ignore
       window._heTreeWatermarkDisabled = true;
