@@ -40,10 +40,12 @@
               v-if="!table"
               class="drag-placeholder he-tree-drag-placeholder"
             >
+              1111
               <slot name="placeholder" :tree="self"></slot>
             </div>
             <td v-else :style="indentStyle" :colspan="placeholderColspan">
               <div class="drag-placeholder he-tree-drag-placeholder">
+                2222
                 <slot name="placeholder" :tree="self"></slot>
               </div>
             </td>
@@ -54,7 +56,7 @@
             :stat="stat"
             :indentStyle="indentStyle"
             :tree="self"
-            >{{ stat.data[textKey] }}</slot
+            >3333{{ stat.data[textKey] }}</slot
           ></template
         >
       </TreeNode>
@@ -67,7 +69,7 @@
 
 <script lang="ts">
 import { PropType, defineComponent, isVue2, isVue3, reactive } from "vue-demi";
-import * as hp from "helper-js";
+import * as hp from "../utils/helper";
 import VirtualList from "./virtual-list";
 import TreeNode from "./TreeNode.vue";
 import { vueMakeTreeProcessor, Stat, TreeProcessor } from "./TreeProcessorVue";
@@ -161,6 +163,7 @@ const cpt = defineComponent({
     };
   },
   computed: {
+    // 全部数据
     valueComputed() {
       return (isVue2 ? this.value : this.modelValue) || [];
     },
@@ -345,6 +348,7 @@ const cpt = defineComponent({
         }
       },
     },
+    // 监听值变化
     valueComputed: {
       handler(value) {
         if (this._ignoreValueChangeOnce) {

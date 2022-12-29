@@ -1,10 +1,10 @@
 import { PropType, defineComponent } from "vue-demi";
 import BaseTree from "./BaseTree.vue";
 import { Stat, CHILDREN } from "@he-tree/tree-utils";
-import { context as ctx, Point } from "@he-tree/dnd-utils";
-import { extendedDND, ExtendedDND } from "@he-tree/dnd-utils";
-import * as hp from "helper-js";
-import { Nullable } from "helper-js";
+import { context as ctx, Point } from "../utils/dnd-utils";
+import { extendedDND, ExtendedDND } from "../utils/dnd-utils";
+import * as hp from "../utils/helper";
+import { Nullable } from "../utils/helper";
 
 export type PropDraggable = (stat: Stat<any>) => boolean | null;
 export type PropDroppable = (stat: Stat<any>) => boolean | null;
@@ -75,7 +75,7 @@ const cpt = defineComponent({
      */
     keepPlaceholder: { type: Boolean },
     /**
-     * prevent drop if greater than maxLevel
+     * prevent drop if greater than maxLevel 最大拖动层级
      */
     maxLevel: { type: Number },
     /**
@@ -156,24 +156,6 @@ const cpt = defineComponent({
     },
   },
   mounted() {
-    // Deprecated old watermark
-    // const hetreeWatermark = window["_hetreeWatermark"];
-    // window["_hetreeWatermark"] = () =>
-    //   hp.resolveValueOrGettter(document["_hetreeWatermark"], [
-    //     true,
-    //     false,
-    //     true,
-    //   ]);
-    // if (
-    //   hp.resolveValueOrGettter(!window["_hetreeWatermark"]()) &&
-    //   !hetreeWatermark
-    // ) {
-    //   console.log(
-    //     `%c[he-tree] Vue tree component:  https://hetree.phphe.com`,
-    //     "color:#0075ff; font-size:14px;"
-    //   );
-    // }
-    //
     const isMoved = (mouse: Point, lastMouse: Point) => {
       let r = true;
       if (startTree && startTree !== this) {

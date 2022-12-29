@@ -15,9 +15,16 @@
 	import TreeNode from "./components/TreeNode.vue";
 	import DraggableTree from "./components/DraggableTree";
 
+	import Draggable from "./Draggable.vue"
+
 	import data0 from "./table.json";
 	import * as hp from "helper-js";
-	const data2 = ref([...hp.cloneObject(data0)]);
+	const data2 = ref([...hp.cloneObject(data0),...hp.cloneObject(data0),
+  ...hp.cloneObject(data0),
+  ...hp.cloneObject(data0),
+  ...hp.cloneObject(data0),
+  ...hp.cloneObject(data0),
+  ...hp.cloneObject(data0),]);
 </script>
 
 <template>
@@ -28,8 +35,9 @@
 	    <div>{{ listItem.title }}</div>
 	</template>
     </HiList> -->
-	<div class="home">
-	<DraggableTree v-model="data2" ref="tree3" :defaultOpen="false" dragCopy>
+	<!-- <div class="home"> -->
+		<!-- 虚拟滚动还是需要高度的 -->
+	<DraggableTree v-model="data2" virtualization ref="tree3" style="height: calc(100vh - 600px)" :defaultOpen="true">
 		<!-- <template #default="{ node, stat }"> -->
 			<template #default="{ node, stat }">
 				
@@ -44,7 +52,10 @@
 			</a>
 		</template>
 	</DraggableTree>
-	</div>
+	<!-- </div> -->
+	<!-- <div class="home"> -->
+		<!-- <Draggable /> -->
+	<!-- </div> -->
 
 </template>
 
