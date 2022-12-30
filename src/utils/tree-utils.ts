@@ -1,6 +1,6 @@
 import * as hp from "./helper";
 
-export const CHILDREN = "children"; // inner childrenKey
+export const CHILDREN = "children"; // inner childrenKey 看到这不仅感慨支持的东西很多
 /**
  * help to handle tree data. 帮助处理树形数据.
  */
@@ -18,8 +18,9 @@ export function makeTreeProcessor<T>(data: T[], opt: Options = {}) {
       const { data, childrenKey } = this;
       const td = new hp.TreeData([] as Stat<T>[]);
       this._statsMap = new Map();
+      // 是这里吗?
       hp.walkTreeData(
-        data,
+        data, // 全树数据
         (nodeData, index, parent, path) => {
           const stat = this.statHandler({
             ...statDefault(),

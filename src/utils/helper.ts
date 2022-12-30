@@ -1016,7 +1016,7 @@ export function walkTreeData<T>(
   opt = objectAssignIfNoKey(
     { ...opt },
     {
-      childrenKey: "children",
+      childrenKey: "children", // 强制覆盖了唉
     }
   );
   const { childrenKey } = opt;
@@ -1024,6 +1024,7 @@ export function walkTreeData<T>(
   //
   class StopException {}
   const func = (children, parent, parentPath) => {
+    console.log('children', children)
     if (opt.reverse) {
       children = children.slice();
       children.reverse();

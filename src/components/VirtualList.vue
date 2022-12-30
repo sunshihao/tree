@@ -75,6 +75,7 @@
       const end2 = computed(() =>
         hp.notGreaterThan(end.value, (props.items?.length || 1) - 1)
       );
+      // console.log('end2end2end2', end2)
       const avgSize = ref(0);
       const startSize = computed(() => positions.value[start.value] ? getPosition(start.value) : 0);
       const totalSize = computed(() =>
@@ -117,6 +118,7 @@
           delete r.display;
           delete r["flex-direction"];
         }
+        // console.log('rrrr', r)
         return r;
       });
   
@@ -163,6 +165,7 @@
       );
       watch(() => props.items, update);
       watch(() => positions.value, resetPositionsAccumulate);
+      // 就是在这里啊 都是对数据进行操作来进行 并辅助px的高度
       const visibleItemsInfo = computed(() => {
         if (!props.items || props.disabled) {
           return;

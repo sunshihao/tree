@@ -1,5 +1,5 @@
-import { makeTreeProcessor, Options } from "@he-tree/tree-utils";
-export * from "@he-tree/tree-utils";
+import { makeTreeProcessor, Options } from "../utils/tree-utils";
+export * from "../utils/tree-utils";
 import { reactive } from "vue-demi";
 
 export function vueMakeTreeProcessor<T>(data: T[], options: Options = {}) {

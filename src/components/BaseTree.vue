@@ -3,9 +3,9 @@
   'he-tree--rtl rtl': rtl,
   'he-tree--drag-overing drag-overing': dragOvering,
 }" ref="vtlist" :items="visibleStats" :disabled="!virtualization" :table="table">
-    <template #prepend>
+    <!-- <template #prepend>
       <slot name="prepend" :tree="self"></slot>
-    </template>
+    </template> -->
     <!-- stat index 这个是VirtualList传进来的 -->
     <template #default="{ item: stat, index }">
       <!-- 这个是默认的slot 父组件中的slot默认传入这里省略了 <slot> -->
@@ -37,9 +37,9 @@
         </template>
       </TreeNode>
     </template>
-    <template #append>
+    <!-- <template #append>
       <slot name="append" :tree="self"></slot>
-    </template>
+    </template> -->
   </VirtualList>
 </template>
 
@@ -151,6 +151,7 @@ const cpt = defineComponent({
         items = items.slice();
         items.reverse();
       }
+      console.log('ffffff', items.filter((stat) => isVisible(stat)))
       return items.filter((stat) => isVisible(stat));
     },
   },
@@ -333,9 +334,9 @@ const cpt = defineComponent({
         } else {
           const { processor } = this;
           processor.data = value;
-          processor.init();
+          processor.init(); 
           this.stats = processor.stats!;
-          this.statsFlat = processor.statsFlat!;
+          this.statsFlat = processor.statsFlat!; // 循环值赋予
         }
       },
     },
