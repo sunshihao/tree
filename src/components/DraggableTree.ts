@@ -1,6 +1,6 @@
 import { PropType, defineComponent } from "vue-demi";
 import BaseTree from "./BaseTree.vue";
-import { Stat, CHILDREN } from "@he-tree/tree-utils";
+import { Stat, CHILDREN } from "../utils/tree-utils";
 import { context as ctx, Point } from "../utils/dnd-utils";
 import { extendedDND, ExtendedDND } from "../utils/dnd-utils";
 import * as hp from "../utils/helper";

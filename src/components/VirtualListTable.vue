@@ -13,7 +13,7 @@
     </div>
 </template>
   
-<script setup lang="ts">
+<script lang="ts" setup>
 //   import { defineComponent } from "vue-demi"; // 对于工程我们只做vue3的适配性工作
 import { defineProps, toRefs } from "vue"
 

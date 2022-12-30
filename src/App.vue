@@ -40,15 +40,11 @@
 	<DraggableTree v-model="data2" virtualization ref="tree3" style="height: calc(100vh - 600px)" :defaultOpen="true">
 		<!-- <template #default="{ node, stat }"> -->
 			<template #default="{ node, stat }">
-				
 			<a class="home_card">
-			<!-- <img class="home_card_tz" style="width: 1em;height: 1em;" src="./assets/tz.svg" />	 -->
 			<span v-if="stat.children.length" @click="stat.open = !stat.open">
 				{{ stat.open ? "-" : "+" }}
 			</span>
 			{{ node.text }}
-			<!-- <img v-if="stat.children.length" @click="stat.open = !stat.open" style="width: 1em;height: 1em;" src="./assets/xia.svg"> -->
-			<!-- {{ stat.text }} -->
 			</a>
 		</template>
 	</DraggableTree>
