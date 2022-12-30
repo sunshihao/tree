@@ -7,7 +7,12 @@
       <slot name="prepend" :tree="self"></slot>
     </template> -->
     <!-- stat index 这个是VirtualList传进来的 -->
+    
     <template #default="{ item: stat, index }">
+
+
+      <!-- <InfiniteList :data="visibleStats" :width="'100%'" :height="500" :itemSize="50" v-slot="{ item: stat, index }"> -->
+
       <!-- 这个是默认的slot 父组件中的slot默认传入这里省略了 <slot> -->
       <TreeNode :vt-index="index" :class="[
   stat.class,
@@ -36,6 +41,8 @@
           </slot>
         </template>
       </TreeNode>
+    <!-- </InfiniteList> -->
+
     </template>
     <!-- <template #append>
       <slot name="append" :tree="self"></slot>
@@ -48,11 +55,13 @@
 import { PropType, defineComponent, isVue2, isVue3, reactive } from "vue-demi";
 import * as hp from "../utils/helper";
 import VirtualList from "./virtual-list";
+import InfiniteList from 'vue3-infinite-list';
+
 import TreeNode from "./TreeNode.vue";
 import { vueMakeTreeProcessor, Stat, TreeProcessor } from "./TreeProcessorVue";
 
 const cpt = defineComponent({
-  components: { VirtualList, TreeNode },
+  components: { VirtualList, TreeNode, InfiniteList },
   props: {
     // for vue2
     value: { required: isVue2, type: Array as PropType<any[]> },

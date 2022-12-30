@@ -41,10 +41,12 @@
 		<!-- <template #default="{ node, stat }"> -->
 			<template #default="{ node, stat }">
 			<a class="home_card">
-			<span v-if="stat.children.length" @click="stat.open = !stat.open">
+			
+			<div>
+				<span v-if="stat.children.length" @click="stat.open = !stat.open">
 				{{ stat.open ? "-" : "+" }}
 			</span>
-			{{ node.text }}
+				{{ node.text }}</div>
 			</a>
 		</template>
 	</DraggableTree>
